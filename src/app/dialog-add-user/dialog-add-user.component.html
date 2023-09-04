@@ -1,5 +1,54 @@
 <h1 mat-dialog-title>Add User</h1>
-<div mat-dialog-content>Hier Nutzer hinzufügen!</div>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>First name</mat-label>
+      <input required="true" matInput placeholder="First name" />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Last name</mat-label>
+      <input required="true" matInput placeholder="Last name" />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Birth Date</mat-label>
+      <input
+        required="true"
+        matInput
+        matInput
+        [matDatepicker]="picker"
+        placeholder="DD/MM/YYYY"
+      />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Street</mat-label>
+      <input required="true" matInput placeholder="Street" />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Zip</mat-label>
+      <input required="true" matInput placeholder="Zip" />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>City</mat-label>
+      <input required="true" matInput placeholder="City" />
+      <mat-hint class="alert hide">Field is required!</mat-hint>
+    </mat-form-field>
+  </form>
+</div>
 <div mat-dialog-actions>
   <button mat-button>Cancel</button>
   <button mat-button cdkFocusInitial>Save</button>
