@@ -3,19 +3,33 @@
   <form>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>First name</mat-label>
-      <input required="true" matInput placeholder="First name" />
+      <input
+        [(ngModel)]="user.firstName"
+        name="firstName"
+        required="true"
+        matInput
+        placeholder="First name"
+      />
       <mat-hint class="alert hide">Field is required!</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Last name</mat-label>
-      <input required="true" matInput placeholder="Last name" />
+      <input
+        [(ngModel)]="user.lastName"
+        name="lastName"
+        required="true"
+        matInput
+        placeholder="Last name"
+      />
       <mat-hint class="alert hide">Field is required!</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Birth Date</mat-label>
       <input
+        [(ngModel)]="birthDate"
+        name="birthDate"
         required="true"
         matInput
         matInput
@@ -32,24 +46,42 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Street</mat-label>
-      <input required="false" matInput placeholder="Street" />
+      <input
+        [(ngModel)]="user.street"
+        name="street"
+        required="false"
+        matInput
+        placeholder="Street"
+      />
       <mat-hint class="alert hide">Field is required!</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Zip</mat-label>
-      <input required="false" matInput placeholder="Zip" />
+      <input
+        [(ngModel)]="user.zip"
+        name="zip"
+        required="false"
+        matInput
+        placeholder="Zip"
+      />
       <mat-hint class="alert hide">Field is required!</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>City</mat-label>
-      <input required="false" matInput placeholder="City" />
+      <input
+        [(ngModel)]="user.city"
+        name="city"
+        required="false"
+        matInput
+        placeholder="City"
+      />
       <mat-hint class="alert hide">Field is required!</mat-hint>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button>Cancel</button>
-  <button mat-button cdkFocusInitial>Save</button>
+  <button mat-button cdkFocusInitial (click)="saveUser()">Save</button>
 </div>
