@@ -8,6 +8,7 @@ import {
   setDoc
 } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
+import { MatDialogRef } from "@angular/material/dialog";
 @Component({
   selector: "app-dialog-add-user",
   templateUrl: "./dialog-add-user.component.html",
@@ -16,24 +17,30 @@ import { Observable } from "rxjs";
 export class DialogAddUserComponent {
   user: User = new User();
   birthDate!: Date;
+  loading: boolean = false;
 
   user$!: Observable<User>;
   firestore: Firestore = inject(Firestore);
   userCollection = collection(this.firestore, "users");
 
-  constructor() {}
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
   ngOnInit(): void {}
 
   async saveUser() {
+    this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
 
     const docRef: any = await addDoc(
       this.userCollection,
       this.user.toJson()
     ).then(() => {
-      this.user.firstName = "";
+      this.loading = false;
+      this.closeDialog();
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close(DialogAddUserComponent);
   }
 }

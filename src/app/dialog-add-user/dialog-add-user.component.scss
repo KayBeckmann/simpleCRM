@@ -4,8 +4,34 @@ form {
   width: 100%;
 }
 
+mat-progress-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.wrapper {
+  position: relative;
+}
+
 .full-width {
   width: 100%;
+  margin-top: 5px;
+}
+
+.half-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
+.one-two-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+}
+
+.half-width {
   margin-top: 5px;
 }
 
