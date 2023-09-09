@@ -18,4 +18,15 @@ export class User {
     this.zip = user ? user.zip : "";
     this.city = user ? user.city : "";
   }
+
+  public toJson() {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      birthDate: this.birthDate,
+      street: this.street,
+      zip: this.zip,
+      city: this.city
+    };
+  }
 }
