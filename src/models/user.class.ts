@@ -19,6 +19,7 @@ export class User {
     this.city = user ? user.city : "";
   }
 
+  /*
   public toJson() {
     return {
       firstName: this.firstName,
@@ -29,4 +30,5 @@ export class User {
       city: this.city
     };
   }
+  */
 }

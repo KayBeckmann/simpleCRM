@@ -8,3 +8,25 @@
 >
   <mat-icon>add</mat-icon>
 </button>
+
+<mat-card>
+  <mat-card-content>
+    <table matSort (matSortChange)="sortData($event)">
+      <tr>
+        <th mat-sort-header="firstName">Firstname</th>
+        <th mat-sort-header="lastName">Lastname</th>
+        <th mat-sort-header="street">Street</th>
+        <th mat-sort-header="zip">Zip</th>
+        <th mat-sort-header="city">City</th>
+      </tr>
+
+      <tr *ngFor="let user of sortedData">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.street }}</td>
+        <td>{{ user.zip }}</td>
+        <td>{{ user.city }}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

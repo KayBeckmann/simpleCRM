@@ -31,13 +31,15 @@ export class DialogAddUserComponent {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
 
+    /*
     const docRef: any = await addDoc(
-      this.userCollection,
+      this.userCollection
       this.user.toJson()
     ).then(() => {
       this.loading = false;
       this.closeDialog();
     });
+    */
   }
 
   closeDialog() {

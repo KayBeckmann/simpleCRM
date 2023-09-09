@@ -1,3 +1,17 @@
+mat-card {
+  width: 100%;
+
+  table {
+    width: 100%;
+
+    th {
+      color: rgba(0, 0, 0, 0.4);
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
 .position {
   position: absolute;
   bottom: 56px;

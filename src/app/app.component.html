@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="container">
   <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
     <div class="logo-container">
       <h1 class="pointer" routerLink="">LOGO</h1>
@@ -27,6 +27,8 @@
         <span>Simple CRM</span>
       </mat-toolbar-row>
     </mat-toolbar>
-    <div class="router-container"><router-outlet></router-outlet></div>
+    <div class="router-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </mat-drawer-container>
