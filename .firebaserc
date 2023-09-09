@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kay-simplecrm": {
+      "hosting": {
+        "simpleCRM": [
+          "kay-simplecrm"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kay-simplecrm"
+  }
+}
