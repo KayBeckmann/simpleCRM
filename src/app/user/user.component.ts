@@ -20,36 +20,30 @@ export class UserComponent {
   user$!: Observable<any>;
   userCollection = collection(this.firestore, "users");
 
-  /*
-  game$: Observable<any>; // Observable -> Bekommt ein Update bei Änderung
-  gameCollection = collection(this.firestore, `games`);
+  /**
+   *
+   * @param dialog
    */
-
   constructor(public dialog: MatDialog) {
-    this.user$ = collectionData(this.userCollection);
-
-    this.user$.forEach((element) => {
-      for (let index = 0; index < element.length; index++) {
-        console.log(element[index].firstName);
-        this.users.push(
-          new User({
-            firstName: element[index].firstName,
-            lastName: element[index].lastName,
-            birthDate: element[index].birthDate,
-            street: element[index].street,
-            zip: element[index].zip,
-            city: element[index].city
-          })
-        );
-      }
-      this.sortedData = this.users.slice();
+    this.user$ = collectionData(this.userCollection, { idField: "id" });
+    this.loadUserList();
+    this.user$.subscribe(() => {
+      this.loadUserList();
     });
   }
 
+  /**
+   * Open 'Add User'-Dialog
+   */
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
   }
 
+  /**
+   *
+   * @param sort
+   * @returns
+   */
   sortData(sort: Sort) {
     const data = this.users.slice();
     if (!sort.active || sort.direction === "") {
@@ -75,44 +69,38 @@ export class UserComponent {
       }
     });
   }
+
+  /**
+   *
+   */
+  loadUserList() {
+    this.users = [];
+    this.user$.forEach((element) => {
+      for (let index = 0; index < element.length; index++) {
+        console.log(element[index].firstName, ": ", element[index].id);
+        this.users.push(
+          new User({
+            firstName: element[index].firstName,
+            lastName: element[index].lastName,
+            birthDate: element[index].birthDate,
+            street: element[index].street,
+            zip: element[index].zip,
+            city: element[index].city
+          })
+        );
+      }
+      this.sortedData = this.users.slice();
+    });
+  }
 }
 
+/**
+ *
+ * @param a
+ * @param b
+ * @param isAsc
+ * @returns
+ */
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
-
-/*
-
-    {
-      birthDate: 482450400000,
-      city: "Menzendorf",
-      firstName: "kay",
-      lastName: "beckmann",
-      street: "Hauptstraße 12",
-      zip: "23923"
-    },
-    {
-      birthDate: 482450400000,
-      city: "Barssel",
-      firstName: "michael",
-      lastName: "scheunemann",
-      street: "am deich 24",
-      zip: "26676"
-    },
-    {
-      birthDate: 482450400000,
-      city: "Menzendorf",
-      firstName: "tjara",
-      lastName: "glogau",
-      street: "Hauptstraße 12",
-      zip: "23923"
-    },
-    {
-      birthDate: 482450400000,
-      city: "Kirchweye",
-      firstName: "kim",
-      lastName: "beckmann",
-      street: "Hauptstraße 8",
-      zip: "26123"
-    }
- */

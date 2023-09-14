@@ -1,4 +1,5 @@
 export class User {
+  id: string;
   firstName: string;
   lastName: string;
   birthDate: number;
@@ -11,6 +12,7 @@ export class User {
    * @param user JSON for the new user
    */
   constructor(user?: any) {
+    this.id = user ? user.id : "";
     this.firstName = user ? user.firstName : "";
     this.lastName = user ? user.lastName : "";
     this.birthDate = user ? user.birthDate : 0;
