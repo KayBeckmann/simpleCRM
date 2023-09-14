@@ -1,12 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { User } from "src/models/user.class";
-import {
-  Firestore,
-  addDoc,
-  collection,
-  doc,
-  setDoc
-} from "@angular/fire/firestore";
+import { Firestore, addDoc, collection } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { MatDialogRef } from "@angular/material/dialog";
 @Component({
@@ -19,6 +13,8 @@ export class DialogAddUserComponent {
   birthDate!: Date;
   loading: boolean = false;
 
+  userUpload!: any;
+
   user$!: Observable<User>;
   firestore: Firestore = inject(Firestore);
   userCollection = collection(this.firestore, "users");
@@ -29,17 +25,17 @@ export class DialogAddUserComponent {
 
   async saveUser() {
     this.loading = true;
-    this.user.birthDate = this.birthDate.getTime();
+    this.user.birthDate = this.birthDate.getTime().toString();
+    this.userUpload = JSON.stringify(this.user);
 
-    /*
-    const docRef: any = await addDoc(
-      this.userCollection
-      this.user.toJson()
-    ).then(() => {
-      this.loading = false;
-      this.closeDialog();
-    });
-    */
+    console.log(this.userUpload);
+
+    const docRef: any = await addDoc(this.userCollection, this.userUpload).then(
+      () => {
+        this.loading = false;
+        this.closeDialog();
+      }
+    );
   }
 
   closeDialog() {
