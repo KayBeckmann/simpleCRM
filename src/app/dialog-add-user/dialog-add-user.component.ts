@@ -13,8 +13,6 @@ export class DialogAddUserComponent {
   birthDate!: Date;
   loading: boolean = false;
 
-  userUpload!: any;
-
   user$!: Observable<User>;
   firestore: Firestore = inject(Firestore);
   userCollection = collection(this.firestore, "users");
@@ -25,17 +23,15 @@ export class DialogAddUserComponent {
 
   async saveUser() {
     this.loading = true;
-    this.user.birthDate = this.birthDate.getTime().toString();
-    this.userUpload = JSON.stringify(this.user);
+    this.user.birthDate = this.birthDate.getTime();
 
-    console.log(this.userUpload);
-
-    const docRef: any = await addDoc(this.userCollection, this.userUpload).then(
-      () => {
-        this.loading = false;
-        this.closeDialog();
-      }
-    );
+    const docRef: any = await addDoc(
+      this.userCollection,
+      this.user.toJson()
+    ).then(() => {
+      this.loading = false;
+      this.closeDialog();
+    });
   }
 
   closeDialog() {

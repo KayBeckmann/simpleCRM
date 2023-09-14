@@ -26,31 +26,24 @@ export class UserComponent {
    */
 
   constructor(public dialog: MatDialog) {
-    // this.sortedData = this.users.slice();
-
     this.user$ = collectionData(this.userCollection);
 
     this.user$.forEach((element) => {
       for (let index = 0; index < element.length; index++) {
-        console.log(element[index]);
+        console.log(element[index].firstName);
+        this.users.push(
+          new User({
+            firstName: element[index].firstName,
+            lastName: element[index].lastName,
+            birthDate: element[index].birthDate,
+            street: element[index].street,
+            zip: element[index].zip,
+            city: element[index].city
+          })
+        );
       }
+      this.sortedData = this.users.slice();
     });
-
-    /*
-        this.game$.forEach((element) => {
-      for (let index = 0; index < element.length; index++) {
-        if (element[index].id == ID) {
-          this.game.players = element[index].players;
-          this.game.stack = element[index].stack;
-          this.game.playedCards = element[index].playedCards;
-          this.game.currentPlayer = element[index].currentPlayer;
-          this.game.pickCardAnimation = element[index].pickCardAnimation;
-          this.game.currentCard = element[index].currentCard;
-          this.gameID = ID;
-        }
-      }
-
-     */
   }
 
   openDialog() {
