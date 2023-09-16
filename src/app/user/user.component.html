@@ -18,6 +18,8 @@
         <th mat-sort-header="street">Street</th>
         <th mat-sort-header="zip">Zip</th>
         <th mat-sort-header="city">City</th>
+        <th mat-sort-header="edit"></th>
+        <th mat-sort-header="delete"></th>
       </tr>
 
       <tr *ngFor="let user of sortedData" class="pointer">
@@ -26,6 +28,12 @@
         <td>{{ user.street }}</td>
         <td>{{ user.zip }}</td>
         <td>{{ user.city }}</td>
+        <td (click)="editUser(user.id)">
+          <mat-icon fontIcon="edit"></mat-icon>
+        </td>
+        <td>
+          <mat-icon (click)="deleteUser(user.id)" fontIcon="delete"></mat-icon>
+        </td>
       </tr>
     </table>
   </mat-card-content>

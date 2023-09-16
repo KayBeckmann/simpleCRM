@@ -6,6 +6,7 @@ export class User {
   street: string;
   zip: string;
   city: string;
+  email: string;
 
   /**
    *
@@ -19,6 +20,7 @@ export class User {
     this.street = user ? user.street : "";
     this.zip = user ? user.zip : "";
     this.city = user ? user.city : "";
+    this.email = user ? user.email : "";
   }
 
   toJson() {

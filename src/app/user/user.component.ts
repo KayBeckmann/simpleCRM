@@ -74,10 +74,10 @@ export class UserComponent {
    *
    */
   loadUserList() {
-    this.users = [];
+    this.users = new Array();
     this.user$.forEach((element) => {
       for (let index = 0; index < element.length; index++) {
-        console.log(element[index].firstName, ": ", element[index].id);
+        // console.log(element[index].firstName, ": ", element[index].id);
         this.users.push(
           new User({
             firstName: element[index].firstName,
@@ -85,12 +85,22 @@ export class UserComponent {
             birthDate: element[index].birthDate,
             street: element[index].street,
             zip: element[index].zip,
-            city: element[index].city
+            city: element[index].city,
+            email: element[index].email,
+            id: element[index].id
           })
         );
       }
       this.sortedData = this.users.slice();
     });
+  }
+
+  editUser(id: string) {
+    console.log(id);
+  }
+
+  deleteUser(id: string) {
+    console.log(id);
   }
 }
 

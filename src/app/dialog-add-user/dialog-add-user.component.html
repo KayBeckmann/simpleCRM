@@ -32,6 +32,19 @@
       </div>
 
       <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          [(ngModel)]="user.email"
+          [disabled]="loading"
+          name="email"
+          required="false"
+          matInput
+          placeholder="Email"
+        />
+        <mat-hint class="alert hide">Field is required!</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Birth Date</mat-label>
         <input
           [(ngModel)]="birthDate"
