@@ -22,7 +22,11 @@
         <th mat-sort-header="delete"></th>
       </tr>
 
-      <tr *ngFor="let user of sortedData" class="pointer">
+      <tr
+        *ngFor="let user of sortedData"
+        class="pointer"
+        routerLink="/user/{{ user.id }}"
+      >
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.street }}</td>
